@@ -1,8 +1,8 @@
+{% from "nginx/map.jinja" import nginx with context %}
+
 include:
   - nginx.install
   - nginx.service
-
-{% set nginx = salt.pillar.get('nginx') %}
 
 nginx_conf:
   file.managed:
@@ -13,7 +13,7 @@ nginx_conf:
     - group: wheel
     - mode: 644
     - watch_in:
-      - service: nginx
+      - service: {{ nginx.service }}
 
 nginx_include_dir:
   file.directory:
@@ -22,9 +22,9 @@ nginx_include_dir:
     - group: wheel
     - mode: 644
     - require:
-      - pkg: nginx_pkg
+      - pkg: {{ nginx.pkg }}
 
-{% for conf_file, params in nginx.include_files.items() %}
+{% for conf_file, params in nginx.includes.items() %}
 nginx_{{ conf_file }}:
   file.managed:
     - name: {{ nginx.includes_dir | path_join(conf_file) }}
@@ -36,5 +36,5 @@ nginx_{{ conf_file }}:
     - require:
       - file: nginx_include_dir
     - watch_in:
-      - service: nginx
+      - service: {{ nginx.service }}
 {% endfor %}

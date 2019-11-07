@@ -3,3 +3,4 @@ FreeBSD:
     service: nginx
     user: www
     conf_file: /usr/local/etc/nginx/nginx.conf
+    includes_dir: /usr/local/etc/nginx/includes

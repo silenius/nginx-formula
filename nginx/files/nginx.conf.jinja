@@ -1,0 +1,25 @@
+# vim: ft=nginx
+
+{% from "nginx/map.jinja" import nginx with context %}
+
+worker_processes  {{ nginx.config.main.worker_processes }};
+error_log {{ nginx.config.main.error_log }};
+#
+
+#pid        logs/nginx.pid;
+
+events {
+    worker_connections  {{ nginx.config.events.worker_connections }};
+}
+
+
+http {
+    include       mime.types;
+
+    default_type  application/octet-stream;
+    access_log  off;
+    sendfile        on;
+    keepalive_timeout  65;
+
+    include  {{ nginx.includes_dir | path_join('*.conf') }};
+}
