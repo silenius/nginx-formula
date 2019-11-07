@@ -1,4 +1,4 @@
-{% set nginx = salt.pillar.get('nginx') %}
+{% from "nginx/map.jinja" import nginx with context %}
 
 nginx_pkg:
   pkg.installed:
