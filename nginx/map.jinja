@@ -1,5 +1,5 @@
-{% import_yaml "defaults/defaults.yaml" as defaults %}
-{% import_yaml "defaults/os.yaml" as os %}
+{% import_yaml "nginx/defaults/nginx.yaml" as defaults %}
+{% import_yaml "nginx/defaults/os.yaml" as os %}
 
 {% set nginx = salt.grains.filter_by(
     defaults,
