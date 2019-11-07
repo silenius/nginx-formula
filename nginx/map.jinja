@@ -3,8 +3,9 @@
 
 {% set nginx = salt.grains.filter_by(
     defaults,
-    merge = salt.grains.filter_by(
-        os, grain='os_family'
+    merge=salt.grains.filter_by(
+        os, grain='os_family',
+        merge=salt.pillar.get('nginx', {})
     ),
     base='nginx'
 ) %}
