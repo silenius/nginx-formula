@@ -1,0 +1,5 @@
+FreeBSD:
+    pkg: nginx
+    service: nginx
+    user: www
+    conf_file: /usr/local/etc/nginx/nginx.conf
