@@ -34,6 +34,7 @@ nginx_{{ conf_file }}:
     - group: wheel
     - mode: 644
     - defaults: 
+        nginx: {{ nginx | tojson }}
         cfg: {{ params.config | tojson }}
     - require:
       - file: nginx_include_dir
