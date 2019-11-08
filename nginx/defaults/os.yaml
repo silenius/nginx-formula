@@ -2,5 +2,6 @@ FreeBSD:
     pkg: nginx
     service: nginx
     user: www
+    default_root: /usr/local/www/nginx
     conf_file: /usr/local/etc/nginx/nginx.conf
     includes_dir: /usr/local/etc/nginx/includes

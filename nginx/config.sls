@@ -33,7 +33,8 @@ nginx_{{ conf_file }}:
     - user: root
     - group: wheel
     - mode: 644
-    - defaults: {{ params.config | tojson }}
+    - defaults: 
+      - cfg: {{ params.config | tojson }}
     - require:
       - file: nginx_include_dir
     - watch_in:

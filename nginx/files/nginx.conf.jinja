@@ -19,5 +19,9 @@ http {
     sendfile        on;
     keepalive_timeout  65;
 
-    include  {{ nginx.includes_dir | path_join('*.conf') }};
+    {% for inc_file, params in nginx.includes.items() %}
+    {% if params.enabled|default(True, boolean=True) %}
+    include  {{ nginx.includes_dir | path_join(inc_file) }};
+    {% endif %}
+    {% endfor %}
 }

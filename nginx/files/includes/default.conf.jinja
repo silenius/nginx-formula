@@ -1,9 +1,11 @@
+{% from "nginx/map.jinja" import nginx with context %}
+
 server {
     listen       80;
-    server_name  localhost;
+    server_name  {{ cfg.server_name|default('localhost') }};
 
     location / {
-        root   /usr/local/www/nginx;
+        root   {{ cfg.root|default(nginx.default_root) }};
         index  index.html index.htm;
     }
 
