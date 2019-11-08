@@ -4,4 +4,5 @@ FreeBSD:
     user: www
     default_root: /usr/local/www/nginx
     conf_file: /usr/local/etc/nginx/nginx.conf
+    conf_dir: /usr/local/etc/nginx
     includes_dir: /usr/local/etc/nginx/includes
