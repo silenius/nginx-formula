@@ -4,14 +4,12 @@
 
 worker_processes  {{ nginx.config.main.worker_processes }};
 error_log {{ nginx.config.main.error_log }};
-#
 
 #pid        logs/nginx.pid;
 
 events {
     worker_connections  {{ nginx.config.events.worker_connections }};
 }
-
 
 http {
     include       mime.types;
