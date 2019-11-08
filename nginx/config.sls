@@ -6,7 +6,7 @@ include:
 
 nginx_conf:
   file.managed:
-    - name: {{ nginx.conf_dir | path_join(nginx.conf_file) }}
+    - name: {{ nginx.conf_file }}
     - source: {{ nginx.conf_file_template }}
     - template: jinja
     - user: root
