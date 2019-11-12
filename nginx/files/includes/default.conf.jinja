@@ -1,7 +1,7 @@
 {% from "nginx/map.jinja" import nginx with context %}
 
 server {
-    listen       80;
+    listen       80 default_server;
     server_name  {{ cfg.server_name|default('localhost') }};
 
     location / {

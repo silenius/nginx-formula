@@ -2,26 +2,24 @@
 
 {% from "nginx/map.jinja" import nginx with context %}
 
-worker_processes  {{ nginx.config.main.worker_processes }};
+worker_processes {{ nginx.config.main.worker_processes }};
 error_log {{ nginx.config.main.error_log }};
 
 #pid        logs/nginx.pid;
 
 events {
-    worker_connections  {{ nginx.config.main.events.worker_connections }};
+    worker_connections {{ nginx.config.main.events.worker_connections }};
 }
 
 http {
     include       mime.types;
 
-    default_type  application/octet-stream;
-    access_log  off;
-    sendfile        on;
-    keepalive_timeout  65;
+    default_type application/octet-stream;
+    access_log off;
+    sendfile on;
+    keepalive_timeout 65;
 
-    {% for inc_file, params in nginx.includes.items() %}
-    {% if params.enabled|default(True, boolean=True) %}
-    include  {{ nginx.includes_dir | path_join(inc_file) }};
-    {% endif %}
+    {% for inc in nginx.config.main.http.include %}
+    include  {{ nginx.includes_dir | path_join(inc) }};
     {% endfor %}
 }
