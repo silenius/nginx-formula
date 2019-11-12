@@ -8,7 +8,9 @@ nginx:
                 worker_connections: 1024
             http:
                 include_files:
-                    default.conf: true
+                    default.conf: 
+                        order: 0
+                        enabled: true
     include_files:
         default.conf:
             template: salt://nginx/files/includes/default.conf.jinja
