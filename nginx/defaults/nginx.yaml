@@ -7,7 +7,7 @@ nginx:
             events:
                 worker_connections: 1024
             http:
-                include:
+                include_files:
                     default.conf: true
     include_files:
         default.conf:

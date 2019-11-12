@@ -18,7 +18,7 @@ http {
     keepalive_timeout 30;
     index index.html;
 
-    {% for inc in nginx.config.main.http.include %}
+    {% for inc in nginx.config.main.http.include_files %}
     include  {{ nginx.includes_dir | path_join(inc) }};
     {% endfor %}
 }
