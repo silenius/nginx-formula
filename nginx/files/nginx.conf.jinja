@@ -4,6 +4,7 @@
 
 worker_processes {{ nginx.config.main.worker_processes }};
 error_log {{ nginx.config.main.error_log }};
+server_tokens off;
 
 events {
     worker_connections {{ nginx.config.main.events.worker_connections }};
