@@ -5,8 +5,6 @@
 worker_processes {{ nginx.config.main.worker_processes }};
 error_log {{ nginx.config.main.error_log }};
 
-#pid        logs/nginx.pid;
-
 events {
     worker_connections {{ nginx.config.main.events.worker_connections }};
 }
@@ -17,7 +15,8 @@ http {
     default_type application/octet-stream;
     access_log off;
     sendfile on;
-    keepalive_timeout 65;
+    keepalive_timeout 30;
+    index index.html;
 
     {% for inc in nginx.config.main.http.include %}
     include  {{ nginx.includes_dir | path_join(inc) }};

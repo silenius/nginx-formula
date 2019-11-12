@@ -24,7 +24,7 @@ nginx_include_dir:
     - require:
       - pkg: {{ nginx.pkg }}
 
-{% for conf_file, params in nginx.includes.items() %}
+{% for conf_file, params in nginx.include_files.items() %}
 nginx_{{ conf_file }}:
   file.managed:
     - name: {{ nginx.includes_dir | path_join(conf_file) }}
