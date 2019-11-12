@@ -19,7 +19,9 @@ http {
     keepalive_timeout 30;
     index index.html;
 
-    {% for inc in nginx.config.main.http.include_files %}
+    {% for inc, inc_cfg in nginx.config.main.http.include_files.items()|sort(attribute='1.order') %}
+    {% if inc_cfg.enabled|default(True, boolean=True) %}
     include  {{ nginx.includes_dir | path_join(inc) }};
+    {% endif %}
     {% endfor %}
 }
