@@ -35,7 +35,7 @@ nginx_{{ conf_file }}:
     - mode: 644
     - defaults: 
         nginx: {{ nginx | tojson }}
-        cfg: {{ params.config | tojson }}
+        cfg: {{ params.config | default({}) | tojson }}
     - require:
       - file: nginx_include_dir
     - watch_in:
